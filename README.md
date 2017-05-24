@@ -43,4 +43,19 @@ fun main(args:Array<String>){
 + 注释：`同Java，单行——//，多行——/* */`
 + 字符串模版：`$，类似JS`
 + if可以当作表达式：`fun maxOf(a:Int,b:Int)=if (a>b) a else b` 
-+ 使用可空变量以及空值检查	
++ 使用可空变量：`?`
++ 实例检查：[`类似于switch-case`]
+
+```kotlin
+when(x) { 
+	is Foo -> ...
+	is Bar -> ...
+	else -> ...
+}
+```	
+
++ 基本类型：`不存在隐式数值精度转换`
+	+ 数值
+	+ 字符
+	+ 布尔
+	+ 数组 
