@@ -35,3 +35,43 @@ fun main(args:Array<String>){
     // 变量
     var x = 5
 }
+
+open class A {
+    open fun f(){print("A")}
+    fun a() {print("a")}
+}
+
+interface B {
+    // 接口中成员默认为open
+    fun f(){print("B")}
+    fun b(){print("b")}
+}
+
+open class C {
+    open fun f(){print("C")}
+    fun c(){print("c")}
+}
+
+class D(): A(),B{
+    // 编译器要求覆盖f()
+    override fun f() {
+        super<B>.f()
+        super<A>.f()
+    }
+
+    override fun b() {
+        super.b()
+    }
+
+}
+
+sealed class Expr
+data class Const(val number: Double) : Expr()
+data class Sum(val e1: Expr, val e2: Expr) : Expr()
+object NotANumber : Expr()
+
+fun eval(expr:Expr):Double = when(expr){
+    is Const -> expr.number
+    is Sum -> eval(expr.e1) + eval(expr.e2)
+    NotANumber -> Double.NaN
+}
